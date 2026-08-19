@@ -1,0 +1,12 @@
+# DroidLume Agent Control
+
+DroidLume Agent Control is an MCP server, CLI, and Agent Skill for controlling DroidLume-managed Android virtual devices on Apple silicon Macs.
+
+Primary documentation:
+- README: https://github.com/tageecc/droidlume-agent-control#readme
+- Skill: https://github.com/tageecc/droidlume-agent-control/blob/main/SKILL.md
+- Commands: https://github.com/tageecc/droidlume-agent-control/blob/main/references/commands.md
+- MCP: https://github.com/tageecc/droidlume-agent-control/blob/main/references/mcp.md
+- Errors: https://github.com/tageecc/droidlume-agent-control/blob/main/references/errors.md
+- Releases: https://github.com/tageecc/droidlume-agent-control/releases/latest
+- Official website: https://droidlume.talkape.net/agent-control/

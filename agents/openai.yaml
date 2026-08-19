@@ -1,0 +1,6 @@
+interface:
+  display_name: "DroidLume Control"
+  short_description: "Control local Android devices with DroidLume"
+  default_prompt: "Use $droidlume-control to start a DroidLume device, operate the Android app, and verify the result."
+policy:
+  allow_implicit_invocation: true

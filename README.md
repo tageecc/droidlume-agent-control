@@ -1,8 +1,10 @@
 # DroidLume Agent Control
 
-**Android emulator MCP server, command-line interface, and AI Agent Skill for macOS.**
+[English](README.md) · [简体中文](README.zh-CN.md)
 
-[![Release](https://img.shields.io/github/v/release/tageecc/droidlume-agent-control)](https://github.com/tageecc/droidlume-agent-control/releases/latest)
+**npm-distributed CLI and MCP server plus a standard AI Agent Skill for DroidLume.**
+
+[![npm](https://img.shields.io/npm/v/droidlume-agent-control)](https://www.npmjs.com/package/droidlume-agent-control)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)](https://droidlume.talkape.net/)
 [![MCP](https://img.shields.io/badge/Model_Context_Protocol-stdio-5b5bd6)](references/mcp.md)
@@ -25,10 +27,18 @@ DroidLume Agent Control lets **Codex, Claude Code, Cursor, Gemini, and other AI 
 - Apple silicon Mac
 - macOS 14 or later
 - DroidLume 1.1 or later
+- Node.js 20 or later
 
 ## Install
 
-Install the signed and Apple-notarized CLI, MCP server, and Agent Skill:
+Install the CLI and MCP server from npm, then install the Skill for your agent:
+
+```bash
+npm install --global droidlume-agent-control
+droidlume agent install codex
+```
+
+Or run the maintained installer, which performs the same two steps:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/tageecc/droidlume-agent-control/main/install.sh | zsh -s -- codex
@@ -38,12 +48,6 @@ Targets:
 
 ```text
 all | codex | claude | cursor | agents
-```
-
-The default binary directory is `~/.local/bin`. Add it to `PATH` if needed:
-
-```bash
-export PATH="$HOME/.local/bin:$PATH"
 ```
 
 Verify the installation:
@@ -62,14 +66,14 @@ Generate an MCP configuration snippet:
 droidlume agent config
 ```
 
-Generic configuration:
+Recommended configuration without a manually downloaded ZIP:
 
 ```json
 {
   "mcpServers": {
     "droidlume": {
-      "command": "/Users/YOU/.local/bin/droidlume-mcp",
-      "args": []
+      "command": "npx",
+      "args": ["-y", "droidlume-agent-control", "mcp"]
     }
   }
 }
@@ -114,7 +118,7 @@ See the complete [command catalog](references/commands.md), [MCP guide](referenc
 ```text
 Codex / Claude / Gemini / Cursor / CI
                     │
-          Agent Skill / MCP / CLI
+        Agent Skill / npm MCP / npm CLI
                     │
        DroidLume Control API v1.0
           http://127.0.0.1:55777
@@ -140,7 +144,7 @@ Generic Android automation often exposes raw ADB serials or depends on screensho
 
 ### Is this an Android emulator?
 
-DroidLume is the Android virtual device application. This repository provides the MCP server, CLI distribution, and Agent Skill used to automate it.
+DroidLume is the Android virtual device application. This repository provides the npm CLI/MCP implementation and Agent Skill used to automate it; it is not a second macOS application.
 
 ### Does it use raw ADB as the public interface?
 
@@ -158,7 +162,7 @@ Yes. The DroidLume host control endpoint listens on `127.0.0.1`, and `droidlume-
 
 - [DroidLume official website](https://droidlume.talkape.net/)
 - [Agent Control documentation](https://droidlume.talkape.net/agent-control/)
-- [Downloads](https://github.com/tageecc/droidlume-agent-control/releases/latest)
+- [npm package](https://www.npmjs.com/package/droidlume-agent-control)
 - [Support](https://droidlume.talkape.net/support/)
 
 ## License

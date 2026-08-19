@@ -13,6 +13,10 @@ Use the `droidlume` CLI as the authoritative control surface. Do not automate th
 manager window by coordinates and do not invoke DroidLume's private ADB server
 directly.
 
+This repository is a standard Agent Skill. Its executable CLI and MCP transport
+are distributed by the `droidlume-agent-control` npm package rather
+than a macOS ZIP installer.
+
 ## Start every workflow
 
 1. Run `droidlume status --format pretty`.

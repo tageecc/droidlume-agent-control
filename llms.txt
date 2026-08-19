@@ -8,5 +8,5 @@ Primary documentation:
 - Commands: https://github.com/tageecc/droidlume-agent-control/blob/main/references/commands.md
 - MCP: https://github.com/tageecc/droidlume-agent-control/blob/main/references/mcp.md
 - Errors: https://github.com/tageecc/droidlume-agent-control/blob/main/references/errors.md
-- Releases: https://github.com/tageecc/droidlume-agent-control/releases/latest
+- npm: https://www.npmjs.com/package/droidlume-agent-control
 - Official website: https://droidlume.talkape.net/agent-control/

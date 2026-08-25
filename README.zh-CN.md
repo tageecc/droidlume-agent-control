@@ -10,6 +10,7 @@
 - 安装、列出、启动、停止和卸载 Android 应用
 - 输入文字、点击、滑动和发送 Android 按键
 - 截图并以 PNG 或 MCP Image Content 返回
+- 创建、列出、恢复和删除 Personal 设备快照
 - 导出脱敏诊断信息
 - 使用稳定设备 UUID、结构化 JSON、命令 Schema、超时和明确错误码
 
@@ -69,7 +70,7 @@ droidlume agent config
 }
 ```
 
-MCP Server 提供 23 个类型化工具、三个资源以及 Android 应用检查 Prompt；截图会作为原生 `image/png` 内容返回。
+MCP Server 提供 27 个类型化工具、三个资源以及 Android 应用检查 Prompt；截图会作为原生 `image/png` 内容返回。
 
 ## CLI 示例
 
@@ -85,6 +86,12 @@ droidlume app launch DEVICE_ID com.example.app
 droidlume device screenshot DEVICE_ID --output screen.png
 droidlume input tap DEVICE_ID 540 1200
 droidlume input text DEVICE_ID "hello"
+
+# 停止设备后创建和恢复 Personal 快照
+droidlume device stop DEVICE_ID
+droidlume snapshot create DEVICE_ID --name "更新前"
+droidlume snapshot list DEVICE_ID --format pretty
+droidlume snapshot restore DEVICE_ID SNAPSHOT_ID --timeout 300
 ```
 
 完整命令见 [命令目录](references/commands.md)、[MCP 指南](references/mcp.md)、[状态规则](references/safety.md)和[错误说明](references/errors.md)。
@@ -96,7 +103,7 @@ Codex / Claude / Gemini / Cursor / CI
                     │
        Agent Skill / npm MCP / npm CLI
                     │
-       DroidLume Control API v1.0
+       DroidLume Control API v1.1
           http://127.0.0.1:55777
                     │
           DroidLume RuntimeController

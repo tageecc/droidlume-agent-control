@@ -4,11 +4,12 @@ const p = (name, type, description, required = false, allowedValues) => ({
 
 const deviceId = p("deviceId", "string", "Stable DroidLume device UUID returned by device.list.", true);
 const packageName = p("packageName", "string", "Android application package name.", true);
+const snapshotId = p("snapshotId", "string", "Stable snapshot UUID returned by snapshot.list.", true);
 const command = (name, summary, risk, parameters = [], timeoutSeconds = 30) => ({
   name, summary, risk, timeoutSeconds, parameters
 });
 
-export const controlApiVersion = "1.0";
+export const controlApiVersion = "1.1";
 export const defaultBaseURL = "http://127.0.0.1:55777";
 
 export const commands = [
@@ -25,6 +26,12 @@ export const commands = [
   command("device.repair", "Clear disposable launch state while preserving userdata.", "control", [deviceId], 120),
   command("device.show", "Open or focus the interactive device window.", "control", [deviceId]),
   command("device.screenshot", "Capture the current Android display as PNG.", "read", [deviceId]),
+  command("snapshot.list", "List Personal snapshots for a stopped device.", "read", [deviceId]),
+  command("snapshot.create", "Create a Personal snapshot of a stopped device.", "control", [
+    deviceId, p("name", "string", "User-facing snapshot name.", true)
+  ], 300),
+  command("snapshot.restore", "Restore a stopped device from a Personal snapshot.", "destructive", [deviceId, snapshotId], 300),
+  command("snapshot.delete", "Delete a Personal device snapshot.", "destructive", [deviceId, snapshotId], 120),
   command("device.configure", "Update supported device profile fields.", "control", [
     deviceId, p("name", "string", "User-facing name."), p("manufacturer", "string", "Android manufacturer profile."),
     p("modelName", "string", "Android model profile."), p("cpuCores", "integer", "CPU core count."),

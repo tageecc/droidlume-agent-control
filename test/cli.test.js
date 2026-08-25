@@ -26,3 +26,15 @@ test("CLI generates npm MCP configuration", async () => {
   assert.equal(config.mcpServers.droidlume.command, "npx");
   assert.deepEqual(config.mcpServers.droidlume.args, ["-y", "droidlume-agent-control", "mcp"]);
 });
+
+test("CLI emits canonical snapshot request", async () => {
+  const stdout = capture(), stderr = capture();
+  process.exitCode = 0;
+  await runCLI(["snapshot", "create", "DEVICE-1", "--name", "Before update", "--dry-run"], { stdout: stdout.stream, stderr: stderr.stream });
+  assert.deepEqual(JSON.parse(stdout.value()), {
+    dryRun: true,
+    command: "snapshot.create",
+    arguments: { deviceId: "DEVICE-1", name: "Before update" }
+  });
+  assert.equal(stderr.value(), "");
+});

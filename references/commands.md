@@ -26,6 +26,18 @@ droidlume device show DEVICE_ID
 droidlume device screenshot DEVICE_ID --output FILE.png
 ```
 
+## Personal snapshots
+
+```bash
+droidlume snapshot list DEVICE_ID
+droidlume snapshot create DEVICE_ID --name "Before update"
+droidlume snapshot restore DEVICE_ID SNAPSHOT_ID
+droidlume snapshot delete DEVICE_ID SNAPSHOT_ID
+```
+
+Stop the device before creating or restoring a snapshot. Snapshot commands
+require DroidLume Personal.
+
 Configuration accepts named options:
 
 ```bash
@@ -81,4 +93,3 @@ The response contains the path to a redacted `.droidlumediag` directory.
 --dry-run
 --help
 ```
-

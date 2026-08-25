@@ -135,11 +135,16 @@ Usage:
   droidlume status
   droidlume schema [command path]
   droidlume device list|get|create|clone|delete|start|stop|restart|repair|show|screenshot|configure
+  droidlume snapshot list|create|restore|delete
   droidlume app list|install|launch|stop|uninstall
   droidlume input text|tap|swipe|key
   droidlume diagnostics export [deviceId]
   droidlume agent config
   droidlume agent install [all|codex|claude|cursor|agents]
+
+Examples:
+  droidlume snapshot create DEVICE_ID --name "Before update"
+  droidlume snapshot restore DEVICE_ID SNAPSHOT_ID --timeout 300
 
 Global options:
   --format json|pretty

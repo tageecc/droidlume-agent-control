@@ -19,6 +19,7 @@ DroidLume Agent Control lets **Codex, Claude Code, Cursor, Gemini, and other AI 
 - List, launch, stop, and uninstall Android apps
 - Type text, tap coordinates, swipe, and send Android key events
 - Capture Android screenshots as PNG or native MCP image content
+- Create, list, restore, and delete Personal device snapshots
 - Export redacted DroidLume diagnostics
 - Return stable device IDs, typed JSON, command schemas, timeouts, and structured errors
 
@@ -79,7 +80,7 @@ Recommended configuration without a manually downloaded ZIP:
 }
 ```
 
-The MCP server uses stdio and exposes 23 typed tools, three resources, and an Android app inspection prompt. Screenshots are returned as native `image/png` MCP content.
+The MCP server uses stdio and exposes 27 typed tools, three resources, and an Android app inspection prompt. Screenshots are returned as native `image/png` MCP content.
 
 ## CLI examples
 
@@ -104,6 +105,15 @@ droidlume input tap DEVICE_ID 540 1200
 droidlume device screenshot DEVICE_ID --output screen-after.png
 ```
 
+Save and restore a Personal snapshot:
+
+```bash
+droidlume device stop DEVICE_ID
+droidlume snapshot create DEVICE_ID --name "Before update"
+droidlume snapshot list DEVICE_ID --format pretty
+droidlume snapshot restore DEVICE_ID SNAPSHOT_ID --timeout 300
+```
+
 Read the machine contract before automation:
 
 ```bash
@@ -120,7 +130,7 @@ Codex / Claude / Gemini / Cursor / CI
                     │
         Agent Skill / npm MCP / npm CLI
                     │
-       DroidLume Control API v1.0
+       DroidLume Control API v1.1
           http://127.0.0.1:55777
                     │
           DroidLume RuntimeController
@@ -138,7 +148,7 @@ Generic Android automation often exposes raw ADB serials or depends on screensho
 - lifecycle-aware start, stop, restart, repair, and Quick Boot handling;
 - streamed APK upload into the DroidLume sandbox;
 - structured command discovery and errors;
-- one control plane shared by the native app, CLI, MCP, and Shortcuts.
+- one access-controlled plane shared by the native app, CLI, MCP, and Shortcuts.
 
 ## FAQ
 

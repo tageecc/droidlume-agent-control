@@ -1,10 +1,10 @@
 ---
 name: droidlume-control
-description: Operate DroidLume-managed Android devices through the structured DroidLume CLI. Use for creating, starting, stopping, configuring, inspecting, repairing, and screenshotting devices; installing or launching APKs; sending Android input; and collecting diagnostics.
+description: Operate DroidLume-managed Android devices through the structured DroidLume CLI. Use for creating, starting, stopping, configuring, snapshotting, inspecting, repairing, and screenshotting devices; installing or launching APKs; sending Android input; and collecting diagnostics.
 license: MIT
 metadata:
   author: TalkApe (Hangzhou) Technology Co., Ltd.
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # DroidLume Control

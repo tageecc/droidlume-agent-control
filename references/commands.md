@@ -10,6 +10,17 @@ droidlume schema device start
 droidlume agent config
 ```
 
+## Cameras
+
+```bash
+droidlume camera list
+droidlume device stop DEVICE_ID
+droidlume device configure DEVICE_ID --front-camera 'host:CAMERA_UNIQUE_ID'
+```
+
+Use only source IDs returned by `camera list`. Camera source changes require a
+stopped device. `emulated` remains the default for both cameras.
+
 ## Devices
 
 ```bash

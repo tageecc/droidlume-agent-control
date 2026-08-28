@@ -7,6 +7,7 @@
 ## 能力
 
 - 创建、复制、配置、启动、停止、重启、修复和删除 Android 设备
+- 枚举可用的 Mac 摄像头，并为每台设备配置前后摄像头来源
 - 安装、列出、启动、停止和卸载 Android 应用
 - 输入文字、点击、滑动和发送 Android 按键
 - 截图并以 PNG 或 MCP Image Content 返回
@@ -18,7 +19,7 @@
 
 - Apple 芯片 Mac
 - macOS 14 或更高版本
-- DroidLume 1.1 或更高版本
+- 使用宿主摄像头控制时需 DroidLume 1.1.3 或更高版本
 - Node.js 20 或更高版本
 
 ## 安装
@@ -70,11 +71,16 @@ droidlume agent config
 }
 ```
 
-MCP Server 提供 27 个类型化工具、三个资源以及 Android 应用检查 Prompt；截图会作为原生 `image/png` 内容返回。
+MCP Server 提供 28 个类型化工具、三个资源以及 Android 应用检查 Prompt；截图会作为原生 `image/png` 内容返回。
 
 ## CLI 示例
 
 ```bash
+# 枚举摄像头，并为停止的设备选择 Mac 前置摄像头
+droidlume camera list --format pretty
+droidlume device stop DEVICE_ID
+droidlume device configure DEVICE_ID --front-camera 'host:CAMERA_UNIQUE_ID'
+
 # 启动设备并打开交互窗口
 droidlume device start DEVICE_ID --show --timeout 180
 
@@ -103,7 +109,7 @@ Codex / Claude / Gemini / Cursor / CI
                     │
        Agent Skill / npm MCP / npm CLI
                     │
-       DroidLume Control API v1.1
+       DroidLume Control API v1.2
           http://127.0.0.1:55777
                     │
           DroidLume RuntimeController

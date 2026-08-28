@@ -38,3 +38,18 @@ test("CLI emits canonical snapshot request", async () => {
   });
   assert.equal(stderr.value(), "");
 });
+
+test("CLI emits canonical camera configuration request", async () => {
+  const stdout = capture(), stderr = capture();
+  process.exitCode = 0;
+  await runCLI([
+    "device", "configure", "DEVICE-1",
+    "--front-camera", "host:camera-id", "--dry-run"
+  ], { stdout: stdout.stream, stderr: stderr.stream });
+  assert.deepEqual(JSON.parse(stdout.value()), {
+    dryRun: true,
+    command: "device.configure",
+    arguments: { deviceId: "DEVICE-1", frontCameraSource: "host:camera-id" }
+  });
+  assert.equal(stderr.value(), "");
+});

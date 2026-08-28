@@ -4,7 +4,7 @@ description: Operate DroidLume-managed Android devices through the structured Dr
 license: MIT
 metadata:
   author: TalkApe (Hangzhou) Technology Co., Ltd.
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # DroidLume Control
@@ -51,6 +51,19 @@ The CLI launches DroidLume when needed and waits for the local control service.
 droidlume device start DEVICE_ID --show --timeout 180
 droidlume device get DEVICE_ID --format pretty
 ```
+
+### Use a Mac camera in Android
+
+```bash
+droidlume camera list --format pretty
+droidlume device stop DEVICE_ID --timeout 60
+droidlume device configure DEVICE_ID --front-camera 'host:CAMERA_UNIQUE_ID'
+droidlume device start DEVICE_ID --show --timeout 180
+```
+
+Camera sources are stable IDs returned by `camera list`; do not guess a
+`webcamN` value. DroidLume requests macOS camera permission only when starting
+a device configured with a Mac camera.
 
 ### Install and launch an APK
 

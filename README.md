@@ -15,6 +15,7 @@ DroidLume Agent Control lets **Codex, Claude Code, Cursor, Gemini, and other AI 
 ## What it can do
 
 - Create, clone, configure, start, stop, restart, repair, show, and delete Android devices
+- List available Mac cameras and configure per-device front and back camera sources
 - Install APK files through a streamed sandbox upload
 - List, launch, stop, and uninstall Android apps
 - Type text, tap coordinates, swipe, and send Android key events
@@ -27,7 +28,7 @@ DroidLume Agent Control lets **Codex, Claude Code, Cursor, Gemini, and other AI 
 
 - Apple silicon Mac
 - macOS 14 or later
-- DroidLume 1.1 or later
+- DroidLume 1.1.3 or later for host camera controls
 - Node.js 20 or later
 
 ## Install
@@ -80,9 +81,17 @@ Recommended configuration without a manually downloaded ZIP:
 }
 ```
 
-The MCP server uses stdio and exposes 27 typed tools, three resources, and an Android app inspection prompt. Screenshots are returned as native `image/png` MCP content.
+The MCP server uses stdio and exposes 28 typed tools, three resources, and an Android app inspection prompt. Screenshots are returned as native `image/png` MCP content.
 
 ## CLI examples
+
+List camera sources and assign a Mac camera to a stopped device:
+
+```bash
+droidlume camera list --format pretty
+droidlume device stop DEVICE_ID
+droidlume device configure DEVICE_ID --front-camera 'host:CAMERA_UNIQUE_ID'
+```
 
 Start a device and open its window:
 
@@ -130,7 +139,7 @@ Codex / Claude / Gemini / Cursor / CI
                     │
         Agent Skill / npm MCP / npm CLI
                     │
-       DroidLume Control API v1.1
+       DroidLume Control API v1.2
           http://127.0.0.1:55777
                     │
           DroidLume RuntimeController

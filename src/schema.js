@@ -9,12 +9,13 @@ const command = (name, summary, risk, parameters = [], timeoutSeconds = 30) => (
   name, summary, risk, timeoutSeconds, parameters
 });
 
-export const controlApiVersion = "1.1";
+export const controlApiVersion = "1.2";
 export const defaultBaseURL = "http://127.0.0.1:55777";
 
 export const commands = [
   command("system.health", "Read host, API, and runtime health.", "read"),
   command("system.schema", "Read the complete command contract.", "read"),
+  command("camera.list", "List Android virtual and available Mac camera sources.", "read"),
   command("device.list", "List managed Android devices and lifecycle state.", "read"),
   command("device.get", "Read one managed device.", "read", [deviceId]),
   command("device.create", "Create a managed Android device.", "control", [p("name", "string", "Optional user-facing device name.")], 90),
@@ -38,7 +39,9 @@ export const commands = [
     p("memoryGB", "integer", "RAM in GiB."), p("width", "integer", "Display width in pixels."),
     p("height", "integer", "Display height in pixels."), p("dpi", "integer", "Display density."),
     p("maxFPS", "integer", "Maximum display frame rate."), p("storageGB", "integer", "Writable userdata capacity in GiB."),
-    p("phoneNumber", "string", "Test telephony line number."), p("operatorName", "string", "Test mobile operator name.")
+    p("phoneNumber", "string", "Test telephony line number."), p("operatorName", "string", "Test mobile operator name."),
+    p("frontCameraSource", "string", "Front camera source returned by camera.list; requires a stopped device."),
+    p("backCameraSource", "string", "Back camera source returned by camera.list; requires a stopped device.")
   ], 60),
   command("app.list", "List third-party Android packages.", "read", [deviceId]),
   command("app.install", "Install a local APK through DroidLume's upload endpoint.", "control", [deviceId, p("path", "string", "Absolute local APK path.", true)], 180),

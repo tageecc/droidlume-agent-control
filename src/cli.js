@@ -9,7 +9,8 @@ import { packageVersion } from "./version.js";
 
 const aliases = {
   model: "modelName", cpu: "cpuCores", memory: "memoryGB", fps: "maxFPS",
-  storage: "storageGB", phone: "phoneNumber", operator: "operatorName", duration: "durationMs"
+  storage: "storageGB", phone: "phoneNumber", operator: "operatorName", duration: "durationMs",
+  "front-camera": "frontCameraSource", "back-camera": "backCameraSource"
 };
 const integerKeys = new Set(["cpuCores", "memoryGB", "width", "height", "dpi", "maxFPS", "storageGB", "x", "y", "x1", "y1", "x2", "y2", "durationMs"]);
 
@@ -134,6 +135,7 @@ const help = `DroidLume agent-native command line
 Usage:
   droidlume status
   droidlume schema [command path]
+  droidlume camera list
   droidlume device list|get|create|clone|delete|start|stop|restart|repair|show|screenshot|configure
   droidlume snapshot list|create|restore|delete
   droidlume app list|install|launch|stop|uninstall
@@ -143,6 +145,8 @@ Usage:
   droidlume agent install [all|codex|claude|cursor|agents]
 
 Examples:
+  droidlume camera list --format pretty
+  droidlume device configure DEVICE_ID --front-camera CAMERA_SOURCE
   droidlume snapshot create DEVICE_ID --name "Before update"
   droidlume snapshot restore DEVICE_ID SNAPSHOT_ID --timeout 300
 

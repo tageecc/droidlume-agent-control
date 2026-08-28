@@ -27,4 +27,8 @@ test("MCP publishes typed DroidLume tools", async () => {
   const snapshot = response.result.tools.find((tool) => tool.name === "snapshot_restore");
   assert.deepEqual(snapshot.inputSchema.required, ["deviceId", "snapshotId"]);
   assert.equal(snapshot.annotations.destructiveHint, true);
+  const cameraList = response.result.tools.find((tool) => tool.name === "camera_list");
+  assert.equal(cameraList.annotations.readOnlyHint, true);
+  const configure = response.result.tools.find((tool) => tool.name === "device_configure");
+  assert.equal(configure.inputSchema.properties.frontCameraSource.type, "string");
 });
